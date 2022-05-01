@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEventHandler, useState } from "react";
 import { Button, HStack, Input, Text, VStack } from "@chakra-ui/react";
 
 const Body = () => {
@@ -6,12 +6,12 @@ const Body = () => {
   const [pokemonNameOpp, setPokemonNameOpp] = useState<string>("");
   const [speedJudge, setSpeedJudge] = useState<string>("");
 
-  const handleInputTextMe: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+  const handleInputTextMe: ChangeEventHandler<HTMLInputElement> = (event) => {
     const inputText = event.target.value;
     setPokemonNameMe(inputText);
   };
 
-  const handleInputTextOpp: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+  const handleInputTextOpp: ChangeEventHandler<HTMLInputElement> = (event) => {
     const inputText = event.target.value;
     setPokemonNameOpp(inputText);
   };
