@@ -1,5 +1,6 @@
 import React, { ChangeEventHandler, useState } from "react";
 import { Button, HStack, Input, Text, VStack } from "@chakra-ui/react";
+import axios from "axios";
 
 const Body = () => {
   const [pokemonNameMe, setPokemonNameMe] = useState<string>("");
@@ -18,10 +19,14 @@ const Body = () => {
 
   const handleClickDecide = (param: string) => {
     if (param === "ME") {
-      console.log("Click Me:", pokemonNameMe);
+      axios.post("http://localhost:8000/", { paramPokemonName: pokemonNameMe }).then((res) => {
+        setSpeedJudge(res.data);
+      });
     }
     if (param === "OPP") {
-      console.log("Click Opp:", pokemonNameOpp);
+      axios.post("http://localhost:8000/", { paramPokemonName: pokemonNameOpp }).then((res) => {
+        setSpeedJudge(res.data);
+      });
     }
   };
 
