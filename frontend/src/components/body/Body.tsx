@@ -2,6 +2,8 @@ import React, { ChangeEventHandler, useState } from "react";
 import { Button, Input, Text, VStack } from "@chakra-ui/react";
 import axios from "axios";
 
+import DisplayImage from "./DisplayImage";
+
 const Body = () => {
   const [pokemonNameMe, setPokemonNameMe] = useState<string>("");
   const [pokemonNameOpp, setPokemonNameOpp] = useState<string>("");
@@ -42,6 +44,7 @@ const Body = () => {
         >
           Decide
         </Button>
+        <DisplayImage />
         <Text>判定結果</Text>
         <Text>{speedJudge}</Text>
       </VStack>
