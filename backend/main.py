@@ -8,9 +8,9 @@ app = FastAPI()
 
 app.add_middleware(
   CORSMiddleware,
-  allow_origins=[""],
+  allow_origins=["*"],
   allow_credentials=True,
-  allow_methods=[""],
+  allow_methods=["*"],
   allow_headers=["*"]
 )
 
@@ -20,8 +20,8 @@ class parmPokemon(BaseModel):
 
 @app.post("/")
 def post_root(param: parmPokemon):
-  url_me = f"https://pokeapi.co/api/v2/pokemon/%7Bparam.paramPokemonNameMe%7D/"
-  url_opp = f"https://pokeapi.co/api/v2/pokemon/%7Bparam.paramPokemonNameOpp%7D/"
+  url_me = "https://pokeapi.co/api/v2/pokemon/" + param.paramPokemonNameMe
+  url_opp = "https://pokeapi.co/api/v2/pokemon/" + param.paramPokemonNameOpp
 
   # GETリクエストでデータを取得し、JSON形式に変える
   response_me = requests.get(url_me)
@@ -30,7 +30,6 @@ def post_root(param: parmPokemon):
   pokemon_data_opp = response_opp.json()
 
   # データを見る
- 
   photoUrl_me = (pokemon_data_me['sprites']['front_default'])
   photoUrl_opp = (pokemon_data_opp['sprites']['front_default'])
 
