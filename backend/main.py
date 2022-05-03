@@ -12,7 +12,7 @@ app.add_middleware(
   allow_methods=["*"],
   allow_headers=["*"]
 )
-
+print("HOGE")
 class parmPokemon(BaseModel):
   paramPokemonName: str
 
