@@ -23,7 +23,7 @@ def post_root(param: parmPokemon):
   url_me = "https://pokeapi.co/api/v2/pokemon/" + param.paramPokemonNameMe
   url_opp = "https://pokeapi.co/api/v2/pokemon/" + param.paramPokemonNameOpp
 
-  # GETリクエストでデータを取得し、JSON形式に変える
+  # # GETリクエストでデータを取得し、JSON形式に変える
   response_me = requests.get(url_me)
   pokemon_data_me = response_me.json()
   response_opp = requests.get(url_opp)
@@ -33,6 +33,19 @@ def post_root(param: parmPokemon):
   photoUrl_me = (pokemon_data_me['sprites']['front_default'])
   photoUrl_opp = (pokemon_data_opp['sprites']['front_default'])
 
+  # #画像の取得
+  
+
   photoUrl = [photoUrl_me, photoUrl_opp]
 
-  return photoUrl
+  
+  if pokemon_data_me["stats"][5]["base_stat"] >pokemon_data_opp["stats"][5]["base_stat"]:
+    output_name = param.paramPokemonNameMe
+  elif pokemon_data_me["stats"][5]["base_stat"] <pokemon_data_opp["stats"][5]["base_stat"]:
+    output_name = param.paramPokemonNameOpp
+  else :
+    output_name = "DRAW"
+
+  return_data = [output_name, " ",photoUrl]
+  return return_data
+
