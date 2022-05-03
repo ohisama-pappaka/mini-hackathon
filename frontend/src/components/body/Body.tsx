@@ -34,6 +34,8 @@ const Body = () => {
         <Input placeholder="Pokemon Name Me" onChange={handleInputTextMe} />
         <Input placeholder="Pokemon Name Opp" onChange={handleInputTextOpp} />
         <Button
+          colorScheme="black"
+          variant="outline"
           onClick={() => {
             handleClickDecide();
           }}
