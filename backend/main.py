@@ -18,4 +18,4 @@ class parmPokemon(BaseModel):
 
 @app.post("/")
 def post_root(param: parmPokemon):
-  return "Before Judge"
+  return "Before Judge?"
