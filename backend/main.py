@@ -34,9 +34,6 @@ def post_root(param: parmPokemon):
   photoUrl_opp = (pokemon_data_opp['sprites']['front_default'])
 
   # #画像の取得
-  
-
-  photoUrl = [photoUrl_me, photoUrl_opp]
 
   
   if pokemon_data_me["stats"][5]["base_stat"] >pokemon_data_opp["stats"][5]["base_stat"]:
@@ -46,6 +43,4 @@ def post_root(param: parmPokemon):
   else :
     output_name = "DRAW"
 
-  return_data = [output_name, " ",photoUrl]
-  return return_data
-
+  return output_name, photoUrl_me, photoUrl_opp

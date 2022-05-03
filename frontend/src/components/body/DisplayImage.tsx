@@ -1,13 +1,18 @@
 import { Box, HStack, Image } from "@chakra-ui/react";
 import React from "react";
 
-const DisplayImage = () => {
+type Props = {
+  photoUrlMe: string;
+  photoUrlOpp: string;
+} 
+
+const DisplayImage = ({photoUrlMe, photoUrlOpp}: Props) => {
   return (
     <>
       <HStack>
-        <Image src="###" fallbackSrc="https://via.placeholder.com/150" boxSize="150px" />
+        <Image src={photoUrlMe} fallbackSrc="https://via.placeholder.com/150" /*boxSize="150px" *//>
         <Box>VS</Box>
-        <Image src="###" fallbackSrc="https://via.placeholder.com/150" boxSize="150px" />
+        <Image src={photoUrlOpp} fallbackSrc="https://via.placeholder.com/150" /*boxSize="150px" *//>
       </HStack>
     </>
   );

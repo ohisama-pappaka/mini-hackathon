@@ -7,7 +7,11 @@ import DisplayImage from "./DisplayImage";
 const Body = () => {
   const [pokemonNameMe, setPokemonNameMe] = useState<string>("");
   const [pokemonNameOpp, setPokemonNameOpp] = useState<string>("");
-  const [speedJudge, setSpeedJudge] = useState<string>("");
+  const [nameData, setNameData] = useState<string>("");
+  const [photoMeData, setPhotoMeData] = useState<string>("");
+  const [photoOppData, setPhotoOppData] = useState<string>("");
+  
+  
 
   const handleInputTextMe: ChangeEventHandler<HTMLInputElement> = (event) => {
     const inputText = event.target.value;
@@ -26,7 +30,9 @@ const Body = () => {
         paramPokemonNameOpp: pokemonNameOpp,
       })
       .then((res) => {
-        setSpeedJudge(res.data);
+        setNameData(res.data[0]);
+        setPhotoMeData(res.data[1]);
+        setPhotoOppData(res.data[2]);
       });
   };
 
@@ -44,9 +50,10 @@ const Body = () => {
         >
           Decide
         </Button>
-        <DisplayImage />
+        <DisplayImage photoUrlMe={photoMeData} photoUrlOpp={photoOppData}/>
         <Text>判定結果</Text>
-        <Text>{speedJudge}</Text>
+        <Text>{nameData}</Text>
+        {/* {responseData ? <Text>{responseData[0]}</Text>: <p></p>} */}
       </VStack>
     </>
   );
