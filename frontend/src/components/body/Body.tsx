@@ -1,5 +1,5 @@
 import React, { ChangeEventHandler, useState } from "react";
-import { Button, HStack, Input, Text, VStack } from "@chakra-ui/react";
+import { Button, Input, Text, VStack } from "@chakra-ui/react";
 import axios from "axios";
 
 const Body = () => {
@@ -17,42 +17,29 @@ const Body = () => {
     setPokemonNameOpp(inputText);
   };
 
-  const handleClickDecide = (param: string) => {
-    if (param === "ME") {
-      axios.post("http://localhost:8000/", { paramPokemonName: pokemonNameMe }).then((res) => {
+  const handleClickDecide = () => {
+    axios
+      .post("http://localhost:8000/", {
+        paramPokemonNameMe: pokemonNameMe,
+        paramPokemonNameOpp: pokemonNameOpp,
+      })
+      .then((res) => {
         setSpeedJudge(res.data);
       });
-    }
-    if (param === "OPP") {
-      axios.post("http://localhost:8000/", { paramPokemonName: pokemonNameOpp }).then((res) => {
-        setSpeedJudge(res.data);
-      });
-    }
   };
 
   return (
     <>
       <VStack>
-        <HStack>
-          <Input placeholder="Pokemon Name Me" onChange={handleInputTextMe} />
-          <Button
-            onClick={() => {
-              handleClickDecide("ME");
-            }}
-          >
-            Decide
-          </Button>
-        </HStack>
-        <HStack>
-          <Input placeholder="Pokemon Name Opp" onChange={handleInputTextOpp} />
-          <Button
-            onClick={() => {
-              handleClickDecide("OPP");
-            }}
-          >
-            Decide
-          </Button>
-        </HStack>
+        <Input placeholder="Pokemon Name Me" onChange={handleInputTextMe} />
+        <Input placeholder="Pokemon Name Opp" onChange={handleInputTextOpp} />
+        <Button
+          onClick={() => {
+            handleClickDecide();
+          }}
+        >
+          Decide
+        </Button>
         <Text>判定結果</Text>
         <Text>{speedJudge}</Text>
       </VStack>
