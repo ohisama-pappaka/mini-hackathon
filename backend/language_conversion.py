@@ -1,11 +1,8 @@
-from pkg_resources import require
-
-
 def LanguageConversion(pokemonNameMe, pokemonNameOpp):
   import json
 
-  returnPokemonNameMe = ""
-  returnPokemonNameOpp = ""
+  returnPokemonNameMe = pokemonNameMe
+  returnPokemonNameOpp = pokemonNameOpp
 
   pokemonData_open = open("./data/pokemon.json", "r", encoding="utf-8")
   pokemonData = json.load(pokemonData_open)
