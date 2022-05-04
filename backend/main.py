@@ -36,9 +36,9 @@ def post_root(param: parmPokemon):
   # #画像の取得
 
   
-  if pokemon_data_me["stats"][5]["base_stat"] >pokemon_data_opp["stats"][5]["base_stat"]:
+  if pokemon_data_opp["stats"][5]["base_stat"] < pokemon_data_me["stats"][5]["base_stat"]:
     output_name = param.paramPokemonNameMe
-  elif pokemon_data_me["stats"][5]["base_stat"] <pokemon_data_opp["stats"][5]["base_stat"]:
+  elif pokemon_data_me["stats"][5]["base_stat"] < pokemon_data_opp["stats"][5]["base_stat"]:
     output_name = param.paramPokemonNameOpp
   else :
     output_name = "DRAW"
