@@ -3,9 +3,9 @@ from pydantic import BaseModel
 from starlette.middleware.cors import CORSMiddleware
 import requests
 
-# python -m uvicorn main:app --reload 
-app = FastAPI()
+from language_conversion import LanguageConversion
 
+app = FastAPI()
 app.add_middleware(
   CORSMiddleware,
   allow_origins=["*"],
@@ -20,8 +20,11 @@ class parmPokemon(BaseModel):
 
 @app.post("/")
 def post_root(param: parmPokemon):
-  url_me = "https://pokeapi.co/api/v2/pokemon/" + param.paramPokemonNameMe
-  url_opp = "https://pokeapi.co/api/v2/pokemon/" + param.paramPokemonNameOpp
+  # 日本語入力を英語入力に変換
+  inputPokemonNameMe, inputPokemonNameOppEn = LanguageConversion(param.paramPokemonNameMe, param.paramPokemonNameOpp)
+
+  url_me = "https://pokeapi.co/api/v2/pokemon/" + inputPokemonNameMe
+  url_opp = "https://pokeapi.co/api/v2/pokemon/" + inputPokemonNameOppEn
 
   # # GETリクエストでデータを取得し、JSON形式に変える
   response_me = requests.get(url_me)
@@ -29,13 +32,11 @@ def post_root(param: parmPokemon):
   response_opp = requests.get(url_opp)
   pokemon_data_opp = response_opp.json()
 
-  # データを見る
+  # 画像の取得
   photoUrl_me = (pokemon_data_me['sprites']['front_default'])
   photoUrl_opp = (pokemon_data_opp['sprites']['front_default'])
 
-  # #画像の取得
-
-  
+  # 素早さの判定
   if pokemon_data_opp["stats"][5]["base_stat"] < pokemon_data_me["stats"][5]["base_stat"]:
     output_name = param.paramPokemonNameMe
   elif pokemon_data_me["stats"][5]["base_stat"] < pokemon_data_opp["stats"][5]["base_stat"]:
