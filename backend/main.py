@@ -33,7 +33,7 @@ def post_root(param: parmPokemon):
   photoUrl_me = (pokemon_data_me['sprites']['front_default'])
   photoUrl_opp = (pokemon_data_opp['sprites']['front_default'])
 
-  # #画像の取得
+  #画像の取得
 
   
   if pokemon_data_me["stats"][5]["base_stat"] >pokemon_data_opp["stats"][5]["base_stat"]:
