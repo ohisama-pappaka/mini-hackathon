@@ -20,7 +20,7 @@ class parmPokemon(BaseModel):
 
 @app.post("/")
 def post_root(param: parmPokemon):
-  # 日本語入力を英語入力に変換
+  # 日本語入力を英語入力に変換する
   inputPokemonNameMe, inputPokemonNameOppEn = LanguageConversion(param.paramPokemonNameMe, param.paramPokemonNameOpp)
 
   url_me = "https://pokeapi.co/api/v2/pokemon/" + inputPokemonNameMe
